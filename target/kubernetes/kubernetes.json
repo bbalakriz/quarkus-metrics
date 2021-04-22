@@ -1,0 +1,105 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "Service",
+  "metadata" : {
+    "annotations" : {
+      "prometheus.io/port" : "8080",
+      "prometheus.io/scheme" : "http",
+      "app.quarkus.io/commit-id" : "568d17a6257734912842c12f778ef9b977fb9c61",
+      "app.quarkus.io/vcs-url" : "https://github.com/danieloh30/quarkus-metrics.git",
+      "app.quarkus.io/build-timestamp" : "2021-04-22 - 05:50:43 +0000",
+      "prometheus.io/scrape" : "true",
+      "prometheus.io/path" : "/q/metrics"
+    },
+    "labels" : {
+      "app.kubernetes.io/name" : "svc-app-metrics",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
+    },
+    "name" : "svc-app-metrics"
+  },
+  "spec" : {
+    "ports" : [ {
+      "name" : "http",
+      "port" : 8080,
+      "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app.kubernetes.io/name" : "svc-app-metrics",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
+    },
+    "type" : "ClusterIP"
+  }
+}{
+  "apiVersion" : "apps/v1",
+  "kind" : "Deployment",
+  "metadata" : {
+    "annotations" : {
+      "prometheus.io/port" : "8080",
+      "prometheus.io/scheme" : "http",
+      "app.quarkus.io/commit-id" : "568d17a6257734912842c12f778ef9b977fb9c61",
+      "app.quarkus.io/vcs-url" : "https://github.com/danieloh30/quarkus-metrics.git",
+      "app.quarkus.io/build-timestamp" : "2021-04-22 - 05:50:43 +0000",
+      "prometheus.io/scrape" : "true",
+      "prometheus.io/path" : "/q/metrics"
+    },
+    "labels" : {
+      "app.kubernetes.io/name" : "svc-app-metrics",
+      "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
+    },
+    "name" : "svc-app-metrics"
+  },
+  "spec" : {
+    "replicas" : 1,
+    "selector" : {
+      "matchLabels" : {
+        "app.kubernetes.io/name" : "svc-app-metrics",
+        "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
+      }
+    },
+    "template" : {
+      "metadata" : {
+        "annotations" : {
+          "prometheus.io/port" : "8080",
+          "prometheus.io/scheme" : "http",
+          "app.quarkus.io/commit-id" : "568d17a6257734912842c12f778ef9b977fb9c61",
+          "app.quarkus.io/vcs-url" : "https://github.com/danieloh30/quarkus-metrics.git",
+          "app.quarkus.io/build-timestamp" : "2021-04-22 - 05:50:43 +0000",
+          "prometheus.io/scrape" : "true",
+          "prometheus.io/path" : "/q/metrics"
+        },
+        "labels" : {
+          "app.kubernetes.io/name" : "svc-app-metrics",
+          "app.kubernetes.io/version" : "1.0.0-SNAPSHOT"
+        }
+      },
+      "spec" : {
+        "containers" : [ {
+          "args" : [ "-jar", "/deployments/quarkus-run.jar", "-cp", "/deployments/lib/io.quarkus.quarkus-security-runtime-spi-1.12.2.Final.jar:/deployments/lib/io.quarkus.quarkus-vertx-http-dev-console-runtime-spi-1.12.2.Final.jar:/deployments/lib/org.reactivestreams.reactive-streams-1.0.3.jar:/deployments/lib/io.smallrye.reactive.mutiny-0.13.0.jar:/deployments/lib/io.quarkus.security.quarkus-security-1.1.3.Final.jar:/deployments/lib/io.netty.netty-codec-4.1.49.Final.jar:/deployments/lib/io.netty.netty-handler-4.1.49.Final.jar:/deployments/lib/io.quarkus.quarkus-netty-1.12.2.Final.jar:/deployments/lib/io.netty.netty-common-4.1.49.Final.jar:/deployments/lib/io.netty.netty-buffer-4.1.49.Final.jar:/deployments/lib/io.netty.netty-transport-4.1.49.Final.jar:/deployments/lib/io.netty.netty-codec-socks-4.1.49.Final.jar:/deployments/lib/io.netty.netty-handler-proxy-4.1.49.Final.jar:/deployments/lib/io.netty.netty-codec-http-4.1.49.Final.jar:/deployments/lib/io.netty.netty-codec-http2-4.1.49.Final.jar:/deployments/lib/io.netty.netty-resolver-4.1.49.Final.jar:/deployments/lib/io.netty.netty-codec-dns-4.1.49.Final.jar:/deployments/lib/io.netty.netty-resolver-dns-4.1.49.Final.jar:/deployments/lib/com.fasterxml.jackson.core.jackson-core-2.12.1.jar:/deployments/lib/io.vertx.vertx-core-3.9.5.jar:/deployments/lib/io.quarkus.quarkus-vertx-core-1.12.2.Final.jar:/deployments/lib/io.vertx.vertx-web-common-3.9.5.jar:/deployments/lib/io.vertx.vertx-auth-common-3.9.5.jar:/deployments/lib/io.vertx.vertx-bridge-common-3.9.5.jar:/deployments/lib/io.vertx.vertx-web-3.9.5.jar:/deployments/lib/io.quarkus.quarkus-vertx-http-1.12.2.Final.jar:/deployments/lib/org.jboss.spec.javax.ws.rs.jboss-jaxrs-api_2.1_spec-2.0.1.Final.jar:/deployments/lib/org.jboss.spec.javax.xml.bind.jboss-jaxb-api_2.3_spec-2.0.0.Final.jar:/deployments/lib/org.jboss.resteasy.resteasy-core-spi-4.5.9.Final.jar:/deployments/lib/com.ibm.async.asyncutil-0.1.0.jar:/deployments/lib/org.eclipse.microprofile.config.microprofile-config-api-1.4.jar:/deployments/lib/org.jboss.resteasy.resteasy-core-4.5.9.Final.jar:/deployments/lib/com.sun.activation.jakarta.activation-1.2.1.jar:/deployments/lib/io.quarkus.quarkus-resteasy-common-1.12.2.Final.jar:/deployments/lib/jakarta.validation.jakarta.validation-api-2.0.2.jar:/deployments/lib/io.quarkus.quarkus-resteasy-server-common-1.12.2.Final.jar:/deployments/lib/io.quarkus.quarkus-resteasy-1.12.2.Final.jar:/deployments/lib/jakarta.annotation.jakarta.annotation-api-1.3.5.jar:/deployments/lib/jakarta.el.jakarta.el-api-3.0.3.jar:/deployments/lib/jakarta.interceptor.jakarta.interceptor-api-1.2.5.jar:/deployments/lib/jakarta.enterprise.jakarta.enterprise.cdi-api-2.0.2.jar:/deployments/lib/jakarta.inject.jakarta.inject-api-1.0.jar:/deployments/lib/io.quarkus.quarkus-development-mode-spi-1.12.2.Final.jar:/deployments/lib/io.smallrye.common.smallrye-common-annotation-1.5.0.jar:/deployments/lib/io.smallrye.config.smallrye-config-common-1.10.2.jar:/deployments/lib/io.smallrye.common.smallrye-common-function-1.5.0.jar:/deployments/lib/io.smallrye.common.smallrye-common-expression-1.5.0.jar:/deployments/lib/io.smallrye.common.smallrye-common-constraint-1.5.0.jar:/deployments/lib/io.smallrye.common.smallrye-common-classloader-1.5.0.jar:/deployments/lib/io.smallrye.config.smallrye-config-1.10.2.jar:/deployments/lib/org.jboss.logging.jboss-logging-3.4.1.Final.jar:/deployments/lib/org.jboss.logmanager.jboss-logmanager-embedded-1.0.6.jar:/deployments/lib/org.jboss.logging.jboss-logging-annotations-2.2.0.Final.jar:/deployments/lib/org.jboss.threads.jboss-threads-3.2.0.Final.jar:/deployments/lib/org.slf4j.slf4j-api-1.7.30.jar:/deployments/lib/org.jboss.slf4j.slf4j-jboss-logmanager-1.1.0.Final.jar:/deployments/lib/org.graalvm.sdk.graal-sdk-21.0.0.jar:/deployments/lib/org.wildfly.common.wildfly-common-1.5.4.Final-format-001.jar:/deployments/lib/io.smallrye.common.smallrye-common-io-1.5.0.jar:/deployments/lib/io.quarkus.quarkus-bootstrap-runner-1.12.2.Final.jar:/deployments/lib/io.quarkus.quarkus-core-1.12.2.Final.jar:/deployments/lib/org.hdrhistogram.HdrHistogram-2.1.12.jar:/deployments/lib/org.latencyutils.LatencyUtils-2.0.3.jar:/deployments/lib/io.micrometer.micrometer-core-1.6.3.jar:/deployments/lib/org.glassfish.jakarta.json-1.1.6.jar:/deployments/lib/io.quarkus.quarkus-micrometer-1.12.2.Final.jar:/deployments/lib/io.prometheus.simpleclient-0.9.0.jar:/deployments/lib/io.prometheus.simpleclient_common-0.9.0.jar:/deployments/lib/io.micrometer.micrometer-registry-prometheus-1.6.3.jar:/deployments/lib/io.quarkus.quarkus-micrometer-registry-prometheus-1.12.2.Final.jar:/deployments/lib/jakarta.transaction.jakarta.transaction-api-1.3.3.jar:/deployments/lib/io.quarkus.arc.arc-1.12.2.Final.jar:/deployments/lib/org.eclipse.microprofile.context-propagation.microprofile-context-propagation-api-1.0.1.jar:/deployments/lib/io.quarkus.quarkus-arc-1.12.2.Final.jar:/deployments/lib/io.quarkus.quarkus-kubernetes-client-internal-1.12.2.Final.jar:/deployments/lib/io.quarkus.quarkus-openshift-1.12.2.Final.jar", "-Dquarkus.http.host=0.0.0.0", "-Djava.util.logging.manager=org.jboss.logmanager.LogManager" ],
+          "command" : [ "java" ],
+          "env" : [ {
+            "name" : "KUBERNETES_NAMESPACE",
+            "valueFrom" : {
+              "fieldRef" : {
+                "fieldPath" : "metadata.namespace"
+              }
+            }
+          }, {
+            "name" : "JAVA_LIB_DIR",
+            "value" : "/deployments/lib"
+          }, {
+            "name" : "JAVA_APP_JAR",
+            "value" : "/deployments/quarkus-run.jar"
+          } ],
+          "image" : "crwbala/svc-app-metrics:1.0.0-SNAPSHOT",
+          "imagePullPolicy" : "Always",
+          "name" : "svc-app-metrics",
+          "ports" : [ {
+            "containerPort" : 8080,
+            "name" : "http",
+            "protocol" : "TCP"
+          } ]
+        } ]
+      }
+    }
+  }
+}
