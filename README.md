@@ -1,6 +1,6 @@
 # quarkus-metrics project
 
-## deploy into openshift
+## Deploying into openshift
 ```
 oc new-project svc-app-monitoring
 mvn clean package -DskipTests -Dquarkus.kubernetes.deploy=true -Dquarkus.openshift.expose=true -Dquarkus.openshift.labels.app-with-metrics=svc-app
