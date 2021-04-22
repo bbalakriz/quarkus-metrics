@@ -1,4 +1,4 @@
-# quarkus-metrics project
+# quarkus-metrics 
 
 ## Deploying into openshift
 ```
